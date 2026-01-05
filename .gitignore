@@ -33,8 +33,10 @@ venv.bak/
 *.swp
 *.swo
 
+
 *.db
 *.sqlite3
+
 
 docker-compose.override.yml
 
@@ -43,5 +45,6 @@ docker-compose.override.yml
 .DS_Store
 Thumbs.db
 
-.env
-.env.local
+test_advertisements.db
+advertisements_fixed.db
+EOF
