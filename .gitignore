@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
-*$py.class
+*.pyo
 *.so
 .Python
 build/
@@ -33,18 +33,11 @@ venv.bak/
 *.swp
 *.swo
 
-
-*.db
-*.sqlite3
-
-
-docker-compose.override.yml
-
-*.log
-
 .DS_Store
 Thumbs.db
 
-test_advertisements.db
-advertisements_fixed.db
+*.log
+
+*.tmp
+*.temp
 EOF

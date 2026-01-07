@@ -1,70 +1,31 @@
-# Advertisement Service API v2.0
+# Advertisement Service API
 
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
 
-Сервис для размещения и управления объявлениями купли/продажи с системой аутентификации и ролями пользователей.
-
-##  Оглавление
-
-- [Особенности](#-особенности)
-- [Система ролей](#-система-ролей)
-- [Быстрый старт](#-быстрый-старт)
-- [API Документация](#-api-документация)
-- [Аутентификация](#-аутентификация)
-- [Примеры запросов](#-примеры-запросов)
-- [Развертывание](#-развертывание)
-- [Структура проекта](#-структура-проекта)
+Сервис для размещения и управления объявлениями купли/продажи с аутентификацией JWT и системой ролей.
 
 ##  Особенности
 
-- **JWT аутентификация** с токенами на 48 часов
-- **Система ролей**: пользователь (user) и администратор (admin)
-- **Полный CRUD** для пользователей и объявлений
-- **Гибкий поиск** объявлений с фильтрами
-- **Автоматическая документация** Swagger UI и ReDoc
-- **Контейнеризация** с Docker Compose
-- **Хеширование паролей** с bcrypt
-- **Пагинация** и валидация данных
-
-##  Система ролей
-
-###  Неавторизованный пользователь
--  Создание пользователя `POST /user`
--  Получение пользователя по ID `GET /user/{id}`
--  Получение объявления по ID `GET /advertisement/{id}`
--  Поиск объявлений `GET /advertisement?{query}`
--  Аутентификация `POST /login`
-
-###  Авторизованный пользователь (user)
--  Все права неавторизованного пользователя
--  Обновление своих данных `PATCH /user/{id}`
--  Удаление себя `DELETE /user/{id}`
--  Создание объявлений `POST /advertisement`
--  Обновление своих объявлений `PATCH /advertisement/{id}`
--  Удаление своих объявлений `DELETE /advertisement/{id}`
--  Просмотр своих объявлений `GET /me/advertisements`
-
-###  Администратор (admin)
--  Все операции с любыми пользователями
--  Все операции с любыми объявлениями
--  Получение всех пользователей `GET /admin/users`
--  Получение всех объявлений `GET /admin/advertisements`
+-  JWT аутентификация с токенами на 48 часов
+-  Безопасное хеширование паролей с bcrypt
+-  Система ролей: пользователь и администратор
+-  Полный CRUD для пользователей и объявлений
+-  Правильные HTTP статус-коды (409 для конфликтов и т.д.)
+-  Валидация данных через Pydantic v2
 
 ##  Быстрый старт
 
-### Запуск с Docker Compose
+### Установка и запуск
 
 ```bash
-# 1. Клонируйте репозиторий
-git clone <repository-url>
-cd advertisement_service
+# Клонируйте репозиторий
+git clone https://github.com/NataliSt-pixel/advertisement_service2.git
+cd advertisement_service2
 
-# 2. Запустите приложение
-docker-compose up --build
+# Установите зависимости
+pip install -r requirements.txt
 
-# 3. Приложение доступно по адресу:
-#    http://localhost:8000
+# Запустите сервер
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
